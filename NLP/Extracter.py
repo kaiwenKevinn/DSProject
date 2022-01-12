@@ -62,6 +62,7 @@ class Extracter:
                     if '罪' in self.seg[0][cur]:
                         self.causes.append(self.seg[0][cur])
                     cur += 1
+        self.causes = set(self.causes)
 
     def scan_rest_sentences(self, sentences):
         self.seg_and_pos(sentences)

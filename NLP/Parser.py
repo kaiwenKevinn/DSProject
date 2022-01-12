@@ -10,7 +10,7 @@ class Parser:
 
     def parse_content(self):
         with open(self.path, encoding='utf-8') as file:
-            sentences = file.read()
+            sentences = file.read()[13:]
         first_flag = '现在押'
         first_flag_alternative = '现已刑满释放'
         second_flag = '经复核确认'
