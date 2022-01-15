@@ -2,7 +2,7 @@
   <div>
     <div class="analyze">
           <el-button type="primary" :loading="analysisStatus" @click="load">点击加载</el-button>
-      </div>
+    </div>
 
      <div class="Item">
         <MyItem :items="name" :eachtitle="'姓名:'"/>
@@ -13,10 +13,9 @@
         <MyItem :items="courts" :eachtitle="'相关法院:'"/>
      </div>
 
-  <el-button @click="show">
-
-  </el-button>
-
+      <div class="Down">
+          <el-button type="primary" :loading="dowloadingStatus" @click="download">下载案例与标注</el-button>
+      </div>
   </div >
 </template>
 
@@ -32,26 +31,30 @@ export default {
   data(){
     return{
         analysisStatus:false,
+        dowloadingStatus:false,
         name:[],
         gender:[],
         ethnicity:[],
         birthPlace:[],
         causes:[],
         courts:[],
-        checked:[
 
-        ]
     }
+  },
+  computed:{
+
   },
   methods:{
     load(){
       var that=this
       axios.get(url+'/search', {
                 params: {
+                  ID: 12345
                   // ID: 12345
                 }
               })
               .then(function (response) {
+                // console.log(response);
                 // console.log(response)
                 that.analysisStatus = true
                 that.name=response.data["name"]
@@ -65,28 +68,17 @@ export default {
                 console.log(error);
               })
               .then(function () {
+                // 总是会执行
                 setTimeout(()=>{
                       that.analysisStatus=false
                       // console.log(that.analysisStatus)
                     },2000)
               });
+    },
 
+    download(){
 
     }
-    ,
-    beforeCreate(){
-      this.$bus.$on('please',(data)=>{
-        console.log(data)
-      })
-    },
-    show(){
-      this.checked.push(1)
-      this.$bus.$emit('please','lastTime')
-    },
-    beforeDestroy (){
-      this.$bus.$off('FromItem')
-    }
-
   }
 
 }
@@ -97,5 +89,8 @@ export default {
    margin-left: 250px;
    position: relative;
  }
-
+.Down{
+   margin-top: 10px;
+   margin-left: 250px;
+}
 </style>

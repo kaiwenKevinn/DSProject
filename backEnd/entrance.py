@@ -11,8 +11,8 @@ CORS(app, supports_credentials=True)
 # def initNlp():
 
 
-@app.route("/")
-def init():
+@app.route("/download",methods=['POST' , 'GET'])
+def save():
     print("hello")
     return "helloWorld"
 

@@ -6,16 +6,14 @@
                 </div>
 
               <div style="margin-left: 5px">
-               <el-checkbox-group
+               <el-checkbox-group @change="sendBack"
                 v-model="checkedArray">
                 <el-checkbox-button v-for="item in items" :label="item" :key="item.id">{{item}}</el-checkbox-button>
               </el-checkbox-group>
               </div>
 
           </div>
-      <div class="sendBack" >
-          <el-button type="success" icon="el-icon-check" circle @click="sendBack"></el-button>
-      </div>
+
     </div>
 
 </template>
@@ -26,22 +24,17 @@ export default {
   data(){
     return{
       checkedArray:[],
-      thelast:false
     }
   },
   props:["items","eachtitle"],
   methods:{
     sendBack() {
-      this.$nextTick(function (){
-        this.$bus.$emit('please','this.checkedArray')
-      })
-
+      let param={
+        eachtitle:this.eachtitle,
+        checkedArray:this.checkedArray
+      }
+      this.$store.commit('UPDATE',param)
     },
-    touch(){
-    this.$nextTick(function (){
-        this.$bus.$emit('please','this.checkedArray')
-      })
-    }
 
   },
    // updated:function () {
@@ -69,9 +62,5 @@ export default {
 .biggest{
   position: relative;
 }
- .sendBack{
-   position: absolute;
-   right: 400px;
-   bottom: 8px;
- }
+
 </style>
