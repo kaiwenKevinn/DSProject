@@ -15,7 +15,7 @@
 <script>
 // import { ArrowDown } from '@element-plus/icons'
 export default {
-  name: 'header',
+  name: 'Header',
   data () {
     return {
 

@@ -1,4 +1,4 @@
-from flask import Flask,request,g
+from flask import Flask, request, g, jsonify
 from flask_cors import CORS
 from NLPHelper import NLPHelper
 
@@ -6,10 +6,9 @@ app = Flask(__name__)
 
 CORS(app, supports_credentials=True)
 
+
 # @app.before_first_request
 # def initNlp():
-
-
 
 
 @app.route("/")
@@ -18,7 +17,7 @@ def init():
     return "helloWorld"
 
 
-@app.route("/user/")
+@app.route("/search/")
 def exp():
     # print(request.args.get('ID'))
     # print(request.form)
@@ -27,6 +26,19 @@ def exp():
     nlp.process()
     # g.nlp = nlp
     name = nlp.info['name']
-    type(name)
-    print(name)
-    return "200"
+    ethnicity = nlp.info['ethnicity']
+    birthplace = nlp.info['birthplace']
+    gender = nlp.info['gender']
+    courts = nlp.info['courts']
+    causes = nlp.info['causes']
+    causes =list (causes)
+    MyDict = {
+        "name": name,
+        "ethnicity": ethnicity,
+        "birthplace": birthplace,
+        "gender": gender,
+        "courts": courts,
+        "causes": causes
+    }
+
+    return MyDict

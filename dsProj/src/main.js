@@ -10,9 +10,11 @@ Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  components: { App },
-  template: '<App/>',
-  beforeCreate() {
+  render: h => h(App),
+  beforeCreate(){
     Vue.prototype.$bus=this
-  }
+  },
+  // components: { App },
+  // template: '<App/>',
+
 })
