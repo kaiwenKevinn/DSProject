@@ -1,19 +1,33 @@
-from flask import Flask, request, g, jsonify
+import os.path
+
+from flask import Flask, request, session, jsonify
 from flask_cors import CORS
 from NLPHelper import NLPHelper
-
+import time
 app = Flask(__name__)
+
+app.config["SECRET_KEY"] = "renyizifuchuan"
 
 CORS(app, supports_credentials=True)
 
 
 # @app.before_first_request
-# def initNlp():
+# def init():
 
 
-@app.route("/download",methods=['POST' , 'GET'])
+@app.route("/download", methods=['POST', 'GET'])
 def save():
-    print("hello")
+
+    param=time.strftime('%Y-%m-%d %H-%M-%S', time.localtime())
+    print(param)
+    f = request.files["file"]
+    basepath = os.path.dirname(__file__)  # 当前文件所在的路径
+    print(basepath)
+    downloadpath = basepath + "\\FILES\\test%s.txt" % param
+    print(downloadpath)
+    session["path"]=downloadpath
+    f.save(downloadpath)
+
     return "helloWorld"
 
 
@@ -31,7 +45,7 @@ def exp():
     gender = nlp.info['gender']
     courts = nlp.info['courts']
     causes = nlp.info['causes']
-    causes =list (causes)
+    causes = list(causes)
     MyDict = {
         "name": name,
         "ethnicity": ethnicity,

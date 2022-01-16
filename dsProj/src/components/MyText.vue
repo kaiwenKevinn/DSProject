@@ -16,17 +16,22 @@
    <el-upload
   class="upload-demo"
   drag
-  action="https://jsonplaceholder.typicode.com/posts/"
+  action="http://localhost:9090/download"
+  :on-exceed="exceed"
+  :limit="1"
   multiple>
   <i class="el-icon-upload"></i>
   <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em>
-  <br>只能上传xxx文件，且不超过xxxkb
+  <br>只能上传txt文件，且不超过xxxkb
   </div>
   <div class="el-upload__tip" slot="tip"></div>
 </el-upload>
 
 
  </div>
+  <div class="emitButton">
+    <el-button type="primary" :loading="analyzeStatus" @click="analyze">分析上传的文件</el-button>
+  </div>
    <!--    清除浮动-->
     <div style="clear: both">
 
@@ -36,11 +41,24 @@
 </template>
 
 <script>
+const url="http://localhost:9090"
 export default {
   name: "MyText",
   data(){
     return{
-      Case:""
+      Case:"",
+      analyzeStatus:false,
+    }
+  },
+  methods:{
+    exceed(){
+      console.log("超出数量限制")
+      this.$alert('超出文件数量限制', '提示', {
+          confirmButtonText: '确定',
+        });
+    },
+    analyze(){
+      var that=this
     }
   }
 }

@@ -12,6 +12,7 @@ import Header from "./components/Header"
 import Crawler from "./components/Crawler";
 import MyText from "./components/MyText";
 import MyBox from "./components/MyBox";
+const url="http://localhost:9090"
 export default{
   name: 'App',
   components:{Header,Crawler,MyText,MyBox}
