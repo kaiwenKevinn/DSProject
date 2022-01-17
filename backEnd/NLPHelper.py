@@ -1,11 +1,5 @@
 from Extracter import Extracter
 from Parser import Parser
-import torch
-import transformers
-import ltp
-import transformers
-import tokenizers
-# from ltp import LTP
 
 
 class NLPHelper:
@@ -33,13 +27,10 @@ class NLPHelper:
 
 
 def main():
-    # nlp = NLPHelper()
-    # nlp.process()
-    # nlp.print_out()
-    print()
-
-if __name__ == '__main__':
     nlp = NLPHelper()
     nlp.process()
     nlp.print_out()
+
+
+if __name__ == '__main__':
     main()
