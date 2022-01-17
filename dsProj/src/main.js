@@ -15,6 +15,8 @@ new Vue({
   el: '#app',
   render: h => h(App),
   store:store,
-
+  beforeCreate() {
+    Vue.prototype.$bus=this
+  }
 
 })

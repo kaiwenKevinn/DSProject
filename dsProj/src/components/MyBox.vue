@@ -1,16 +1,13 @@
 <template>
   <div>
-    <div class="analyze">
-          <el-button type="primary" :loading="analysisStatus" @click="load">点击加载</el-button>
-    </div>
 
      <div class="Item">
-        <MyItem :items="name" :eachtitle="'姓名:'"/>
-        <MyItem :items="gender" :eachtitle="'性别:'"/>
-        <MyItem :items="ethnicity" :eachtitle="'民族:'"/>
-        <MyItem :items="birthPlace" :eachtitle="'出生地:'"/>
-        <MyItem :items="causes" :eachtitle="'案由:'"/>
-        <MyItem :items="courts" :eachtitle="'相关法院:'"/>
+        <MyItem :status="checkedClear" :items="property.name" :eachtitle="'姓名:'"/>
+        <MyItem :status="checkedClear" :items="property.gender" :eachtitle="'性别:'"/>
+        <MyItem :status="checkedClear" :items="property.ethnicity" :eachtitle="'民族:'"/>
+        <MyItem :status="checkedClear" :items="property.birthPlace" :eachtitle="'出生地:'"/>
+        <MyItem :status="checkedClear" :items="property.causes" :eachtitle="'案由:'"/>
+        <MyItem :status="checkedClear" :items="property.courts" :eachtitle="'相关法院:'"/>
      </div>
 
       <div class="Down">
@@ -30,65 +27,52 @@ export default {
   },
   data(){
     return{
+        checkedClear:false,
         analysisStatus:false,
         dowloadingStatus:false,
-        name:[],
-        gender:[],
-        ethnicity:[],
-        birthPlace:[],
-        causes:[],
-        courts:[],
-
     }
   },
   computed:{
-
+    property(){
+      return this.$store.state.result
+    }
   },
   methods:{
     load(){
-      var that=this
-      axios.get(url+'/search', {
-                params: {
-                  ID: 12345
-                  // ID: 12345
-                }
-              })
-              .then(function (response) {
-                // console.log(response);
-                // console.log(response)
-                that.analysisStatus = true
-                that.name=response.data["name"]
-                that.causes=response.data["causes"]
-                that.courts=response.data["courts"]
-                that.gender=response.data["gender"]
-                that.ethnicity=response.data["ethnicity"]
-                that.birthPlace=response.data["birthplace"]
-              })
-              .catch(function (error) {
-                console.log(error);
-              })
-              .then(function () {
-                // 总是会执行
-                setTimeout(()=>{
-                      that.analysisStatus=false
+      this.$store.dispatch('getDivision')
+      this.analysisStatus=true
+      setTimeout(()=>{
+                      this.analysisStatus=false
                       // console.log(that.analysisStatus)
-                    },2000)
-              });
+                    },3000)
+
     },
 
     download(){
+      this.$store.dispatch('downLoadAnnotation')
 
+      // this.$store.commit("CLEARANNOTATION")
+      this.checkedClear=true
+
+       setTimeout(()=>{
+                      this.checkedClear=false
+                      // console.log(that.analysisStatus)
+                    },200)
+
+    },
     }
-  }
+
 
 }
 </script>
 
 <style scoped>
- .analyze{
-   margin-left: 250px;
-   position: relative;
- }
+ /*.analyze{*/
+ /*  margin-left: 250px;*/
+ /*  margin-top: -40px;*/
+ /*  !*position: relative;*!*/
+ /*      display: inline-block;*/
+ /*}*/
 .Down{
    margin-top: 10px;
    margin-left: 250px;

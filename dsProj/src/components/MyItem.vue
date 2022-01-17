@@ -26,7 +26,7 @@ export default {
       checkedArray:[],
     }
   },
-  props:["items","eachtitle"],
+  props:["items","eachtitle","status"],
   methods:{
     sendBack() {
       let param={
@@ -36,13 +36,18 @@ export default {
       this.$store.commit('UPDATE',param)
     },
 
+
   },
-   // updated:function () {
-   //    // console.log('updated'+this.eachtitle)
-   //   // console.log(this.checkedArray)
-   //
-   //   // console.log(this.$bus)
-   // },
+  updated() {
+    var that=this
+    this.$nextTick(
+      ()=>{
+          if(that.status===true){
+            that.checkedArray=[]
+          }
+      }
+    )
+  },
 
 }
 </script>
