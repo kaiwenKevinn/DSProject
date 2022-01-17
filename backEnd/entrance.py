@@ -63,7 +63,7 @@ def exp():
     userInput=userInput.lstrip("{")
     userInput=userInput.rstrip("}")
     dealing=userInput.split(":")
-    # print(userInput)
+    print(userInput)
     dealing[1]=dealing[1].replace("\\n","~")
     print(dealing[1])
     length=len(dealing[1])
@@ -75,7 +75,7 @@ def exp():
             f.write(dealing[1][i])
 
     f.close()
-
+    print("马上diaoYong")
     return diaoYong(downloadpath)
 
 
