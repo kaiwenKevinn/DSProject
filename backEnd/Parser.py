@@ -1,4 +1,3 @@
-from Extracter import Extracter
 
 
 class Parser:

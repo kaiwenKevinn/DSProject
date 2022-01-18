@@ -4,6 +4,7 @@ from ltp import LTP
 class Extracter:
     def __init__(self):
         self.ltp = LTP()
+        self.ltp.init_dict('special_words.txt')
         self.ltp.init_dict('dict.txt')
         self.ltp.init_dict('dict2.txt')
         self.ltp.init_dict('ultimate_accusations_dict.txt')
@@ -38,15 +39,25 @@ class Extracter:
 
     def extract_criminal_basic_info(self, sentences):
         self.seg_and_pos(sentences)
+        birth_place_flags = ['户籍地', '出生于', '住']
+        stop_sign = ['，', '。']
         for i in range(len(self.seg[0])):
             if self.pos[0][i] == 'nh':
                 self.names.append(self.seg[0][i])
             if self.seg[0][i] == '男' or self.seg[0][i] == '女':
                 self.gender.append(self.seg[0][i])
+            if self.seg[0][i] in birth_place_flags:
+                index = i + 1
+                while self.seg[0][index] not in stop_sign:
+                    self.birthplace.append(self.seg[0][index])
+                    index += 1
+                i = index
+                continue
             if self.pos[0][i] == 'ns':
                 self.birthplace.append(self.seg[0][i])
             if self.seg[0][i] in self.eth_dict:
                 self.ethnicity.append(self.seg[0][i])
+        self.birthplace = list(set(self.birthplace))
         self.ltp.add_words(self.names)
 
     def extract_principal_crime_info(self, sentences):
@@ -54,15 +65,13 @@ class Extracter:
         for i in range(len(self.seg[0])):
             if (self.pos[0][i] == 'ns' or self.pos[0][i] == 'ni') and ('法院' in self.seg[0][i]):
                 self.courts_concerned.append(self.seg[0][i])
-        for item in self.srl[0]:
-            index, args = item
-            if self.seg[0][index] == '犯':
-                cur = index + 1
-                while cur < len(self.seg[0]):
-                    if '罪' in self.seg[0][cur]:
-                        self.causes.append(self.seg[0][cur])
-                    cur += 1
-        self.causes = set(self.causes)
+        index = self.seg[0].index('指控')
+        tmp = ''
+        cur = index + 4
+        while cur < len(self.seg[0]) and self.seg[0][cur] != '一案':
+            tmp += self.seg[0][cur]
+            cur += 1
+        self.causes.append(tmp)
 
     def scan_rest_sentences(self, sentences):
         self.seg_and_pos(sentences)
@@ -72,6 +81,7 @@ class Extracter:
                     self.courts_concerned.append(self.seg[i][j])
 
     """for test usage"""
+
     def print_out(self):
         print('name: ', self.names)
         print('birthplace: ', self.birthplace)
@@ -79,4 +89,3 @@ class Extracter:
         print('ethnicity: ', self.ethnicity)
         print('courts: ', self.courts_concerned)
         print('causes: ', self.causes)
-
