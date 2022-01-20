@@ -3,11 +3,14 @@
 class Parser:
     def __init__(self, path):
         self.path = path
+        self.raw_content = ""
         self.basic_info = []
         self.crime_info = []
         self.rest = []
 
     def parse_content(self):
+        self.raw_content = open(self.path, 'r', encoding='utf-8').read()
+
         with open(self.path, encoding='utf-8') as file:
             sentences = file.read()[13:]
         first_flag = '现在押'

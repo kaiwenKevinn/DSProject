@@ -14,6 +14,8 @@ class NLPHelper:
         self.extracter.extract_criminal_basic_info(self.parser.basic_info)
         self.extracter.extract_principal_crime_info(self.parser.crime_info)
         self.extracter.scan_rest_sentences(self.parser.rest)
+        self.extracter.extract_by_tfidf(self.parser.raw_content)
+
         self.info['name'] = self.extracter.names
         self.info['ethnicity'] = self.extracter.ethnicity
         self.info['birthplace'] = self.extracter.birthplace
