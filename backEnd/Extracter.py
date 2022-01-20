@@ -1,4 +1,5 @@
 from ltp import LTP
+import jieba.analyse
 
 
 class Extracter:
@@ -40,24 +41,31 @@ class Extracter:
     def extract_criminal_basic_info(self, sentences):
         self.seg_and_pos(sentences)
         birth_place_flags = ['户籍地', '出生于', '住']
+        birth_place_flag = ''
         stop_sign = ['，', '。']
+
+        for i in range(3):
+            if birth_place_flags[i] in self.seg[0]:
+                birth_place_flag = birth_place_flags[i]
+                break
+
+        assert birth_place_flag != ''
+
         for i in range(len(self.seg[0])):
             if self.pos[0][i] == 'nh':
                 self.names.append(self.seg[0][i])
             if self.seg[0][i] == '男' or self.seg[0][i] == '女':
                 self.gender.append(self.seg[0][i])
-            if self.seg[0][i] in birth_place_flags:
-                index = i + 1
-                while self.seg[0][index] not in stop_sign:
-                    self.birthplace.append(self.seg[0][index])
-                    index += 1
-                i = index
-                continue
-            if self.pos[0][i] == 'ns':
-                self.birthplace.append(self.seg[0][i])
             if self.seg[0][i] in self.eth_dict:
                 self.ethnicity.append(self.seg[0][i])
-        self.birthplace = list(set(self.birthplace))
+            if self.seg[0][i] == birth_place_flag:
+                index = i + 1
+                birth_place = ''
+                while self.seg[0][index] not in stop_sign:
+                    birth_place += self.seg[0][index]
+                    index += 1
+                self.birthplace.append(birth_place)
+
         self.ltp.add_words(self.names)
 
     def extract_principal_crime_info(self, sentences):
@@ -80,6 +88,11 @@ class Extracter:
                 if (self.pos[i][j] == 'ns' or self.pos[i][j] == 'ni') and '法院' in self.seg[i][j]:
                     self.courts_concerned.append(self.seg[i][j])
 
+    def extract_by_tfidf(self, raw_content):
+        names = jieba.analyse.extract_tags(raw_content, topK=100, allowPOS=['n'])
+        index = 1
+        pass
+
     """for test usage"""
 
     def print_out(self):
@@ -89,3 +102,6 @@ class Extracter:
         print('ethnicity: ', self.ethnicity)
         print('courts: ', self.courts_concerned)
         print('causes: ', self.causes)
+
+
+
