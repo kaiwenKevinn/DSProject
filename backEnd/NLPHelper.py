@@ -1,3 +1,5 @@
+import os
+
 from Extracter import Extracter
 from Parser import Parser
 
@@ -29,7 +31,15 @@ class NLPHelper:
 
 
 def main():
-    nlp = NLPHelper()
+    # index = 1
+    # files_txt = os.listdir(os.getcwd() + '/file_unzip/txt')
+    # for file_txt in files_txt:
+    #     print("index : ", index)
+    #     nlp = NLPHelper('file_unzip/txt/' + file_txt)
+    #     nlp.process()
+    #     nlp.print_out()
+    #     index += 1
+    nlp = NLPHelper('helper_debug/sample1.txt')
     nlp.process()
     nlp.print_out()
 
