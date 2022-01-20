@@ -49,11 +49,14 @@ const mutations = {
   }
 }
 const actions = {
+  /*
+  得到输入文本的分词结果
+  * */
   getDivision(context){
       var that=this
       var obj
-      axios.post(url+'/search/text', {
-        input:context.state.myText
+      axios.post('http://localhost:9090/search/text', {
+                  input:context.state.myText
               })
               .then(function (response) {
                 // var analysisStatus = true
@@ -77,10 +80,13 @@ const actions = {
               })
               .then(function () {
                 // 总是会执行
+                console.log("obj is ",obj )
                 context.commit('RENDER',obj)
               });
   },
-
+  /*
+  * 得到上传文件的分词结果
+  * */
   getResultFromUpload(context){
     var obj
     axios.post(url+'/analyze/upload', {
@@ -93,13 +99,16 @@ const actions = {
                 var gender=response.data["gender"]
                 var ethnicity=response.data["ethnicity"]
                 var birthPlace=response.data["birthplace"]
+                var textFromUpload=response.data["text"]
+
                 obj={
                   "name":name,
                   "causes":causes,
                   "courts":courts,
                   "gender":gender,
                   "ethnicity":ethnicity,
-                  "birthPlace":birthPlace
+                  "birthPlace":birthPlace,
+                  "textFromUpload":textFromUpload
                 }
               })
               .catch(function (error) {
@@ -110,12 +119,13 @@ const actions = {
                 context.commit('RENDER',obj)
               });
   },
-
+  /*
+  * 下载标注
+  * */
   downLoadAnnotation(context){
     var that=this
-
      axios.post(url+'/download/annotation', {
-        annotation:context.state.checked
+                annotation:context.state.checked
               })
               .then(function (response) {
                 // var analysisStatus = true
@@ -129,6 +139,38 @@ const actions = {
               .then(function () {
                 // 总是会执行
               });
+  },
+
+  crawl(context,params){
+
+
+    var beginTime=params["StringBeginningTime"]
+    var endTime=params["StringendTime"]
+    var num=params["num"]
+
+    // debugger
+
+    axios.get(url+'/crawl/1', {
+                        params: {
+                          beginTime: beginTime,
+                          endTime:endTime,
+                          num:num
+                      }
+              })
+              .then(function (response) {
+                // var analysisStatus = true
+                  if(response.status===200){
+                    alert("爬取成功")
+
+                  }
+              })
+              .catch(function (error) {
+                console.log(error);
+              })
+              .then(function () {
+                // 总是会执行
+              });
+
   }
 }
 export default  new Vuex.Store({

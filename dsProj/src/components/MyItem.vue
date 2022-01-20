@@ -38,6 +38,7 @@ export default {
 
 
   },
+
   updated() {
     var that=this
     this.$nextTick(
