@@ -12,6 +12,9 @@ app = Flask(__name__)
 
 CORS(app, supports_credentials=True)
 
+# @app.before_first_request
+# def init():
+location = [""]
 location = [""]
 Information = [""]
 
@@ -44,7 +47,6 @@ def save():
     f.save(downloadpath)
     global location
     location[0] = downloadpath
-
     # print("上传文件时",location)
     # session["dizhi"]=downloadpath
     f.close()
@@ -53,7 +55,6 @@ def save():
         Information[0] = InputFromtxt
 
     return "200"
-
 
 @app.route("/download/annotation", methods=['POST', 'GET'])
 def saveAnnotation():
@@ -74,7 +75,6 @@ def saveAnnotation():
     return "200"
 
 
-# todo 分析用户输入文书的方法
 @app.route("/search/text", methods=["GET", "POST"])
 def exp():
     param = time.strftime('%Y-%m-%d %H-%M-%S', time.localtime())
@@ -85,7 +85,9 @@ def exp():
     userInput = userInput.lstrip("{")
     userInput = userInput.rstrip("}")
     dealing = userInput.split(":")
+    print(userInput)
     dealing[1] = dealing[1].replace("\\n", "~")
+    print(dealing[1])
     length = len(dealing[1])
     f = open(downloadpath, "w", encoding='utf-8')
     for i in range(0, length, 1):
@@ -99,7 +101,6 @@ def exp():
     return diaoYong(downloadpath)
 
 
-# todo 分析用户上传的文件
 @app.route("/analyze/upload", methods=['GET', 'POST'])
 def analyze():
     global location
@@ -108,6 +109,7 @@ def analyze():
     returnDict["text"] = Information[0]
 
     return returnDict
+
 
 
 def diaoYong(fileName):
