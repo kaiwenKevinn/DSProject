@@ -94,16 +94,18 @@ export default {
         });
       this.$store.dispatch('crawl',params)
 
-      this.$nextTick(()=>{
-           if (this.crawlStatue === true){
-          loading.close();
-           this.$notify({
-          title: '成功',
-          message: '数据已下载成功，请前往....目录查看',
-          type: 'success'
-        });
-        }
-        })
+       setTimeout(()=>{
+                 loading.close();
+                   this.$notify({
+                    title: '成功',
+                    message: '数据已下载成功，请前往file_unzip目录查看',
+                    type: 'success',
+                     duration:10000
+                });
+       },150000)
+
+
+
 
 
 

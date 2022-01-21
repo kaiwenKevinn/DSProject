@@ -26,7 +26,7 @@ export default {
       checkedArray:[],
     }
   },
-  props:["items","eachtitle","status"],
+  props:["items","eachtitle"],
   methods:{
     sendBack() {
       let param={

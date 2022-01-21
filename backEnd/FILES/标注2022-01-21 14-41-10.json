@@ -1,23 +1,21 @@
 {
+    "checkedCauses": [
+        "抢劫罪"
+    ],
     "checkedName": [
         "高英凯"
     ],
     "checkedGender": [
         "男"
     ],
-    "checkedBirthPlace": [
-        "中华人民共和国最高人民法院",
-        "内蒙古"
-    ],
     "checkedEthnicity": [
         "汉族"
     ],
-    "checkedCauses": [
-        "盗窃罪",
-        "抢劫罪"
+    "checkedBirthPlace": [
+        "内蒙古自治区呼和浩特市"
     ],
     "checkedCourts": [
         "北京市高级人民法院",
-        "北京市第三中级人民法院"
+        "中华人民共和国最高人民法院"
     ]
 }

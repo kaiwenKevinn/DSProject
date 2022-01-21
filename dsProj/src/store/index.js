@@ -129,9 +129,9 @@ const actions = {
               })
               .then(function (response) {
                 // var analysisStatus = true
-                  if(response.status===200){
-                    alert("标注下载成功")
-                  }
+                //   if(response.status===200){
+                //     alert("标注下载成功")
+                //   }
               })
               .catch(function (error) {
                 console.log(error);
@@ -160,9 +160,9 @@ const actions = {
               .then(function (response) {
                 // var analysisStatus = true
                   context.state.crawlingFinished=true
-                  if(response.status===200){
-                    alert("爬取成功")
-                  }
+                  // if(response.status===200){
+                  //   alert("爬取成功")
+                  // }
               })
               .catch(function (error) {
                 console.log(error);
