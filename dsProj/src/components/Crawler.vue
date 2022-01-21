@@ -73,6 +73,7 @@ export default {
     },
   methods:{
     Crawling(){
+      this.$store.state.crawlingFinished=false
       var beginningTime=this.value2[0]
       var endTime=this.value2[1]
       var StringBeginningTime=(beginningTime.getFullYear())+"-"+(beginningTime.getMonth()+1)+"-"+(beginningTime.getDate())
@@ -85,8 +86,26 @@ export default {
         "StringendTime": StringendTime,
         "num":num ,
       }
-
+        const loading = this.$loading({
+                  lock: true,
+                  text: 'Loading',
+                  spinner: 'el-icon-loading',
+                  background: 'rgba(0, 0, 0, 0.7)'
+        });
       this.$store.dispatch('crawl',params)
+
+      this.$nextTick(()=>{
+           if (this.crawlStatue === true){
+          loading.close();
+           this.$notify({
+          title: '成功',
+          message: '数据已下载成功，请前往....目录查看',
+          type: 'success'
+        });
+        }
+        })
+
+
 
 
       // if(true) {
@@ -103,6 +122,11 @@ export default {
       //     message: '这是一条成功的提示消息',
       //   });
       // }
+    }
+  },
+  computed:{
+    crawlStatue(){
+      return this.$store.state.crawlingFinished
     }
   }
 }

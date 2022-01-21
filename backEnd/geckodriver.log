@@ -572,3 +572,89 @@ JavaScript error: https://wenshu.court.gov.cn/website/common/plugins/layui/lay/m
 
 ###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
 
+1642691926474	geckodriver	INFO	Listening on 127.0.0.1:54712
+1642691929513	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\kevin\\AppData\\Local\\Temp\\rust_mozprofileQqDVcH"
+1642691930799	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\kevin\\AppData\\Local\\Temp\\rust_mozprofileQqDVcH\\search.json.mozlz4", (void 0)))
+1642691934834	Marionette	INFO	Listening on port 54722
+1642691934876	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://wenshu.court.gov.cn/common/static/scripts/lawyeeui/website.js?v=1565674602637, line 1: SyntaxError: expected expression, got '<'
+JavaScript warning: https://wenshu.court.gov.cn/ line 26 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: https://wenshu.court.gov.cn/common/static/scripts/lawyeeui/website.js?v=1565674602516, line 981: TypeError: $page._userInfo is undefined
+JavaScript error: https://wenshu.court.gov.cn/website/common/plugins/layui/lay/modules/layer.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/js/sanji/citySet.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/js/strToBinary.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/181029BPRY8AYR1P/index.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/common/plugins/layui/lay/modules/layer.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/common/plugins/layui/lay/modules/laydate.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/js/sanji/cityJson.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/js/sanji/citySet.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/181029BPRY8AYR1P/index.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/common/plugins/layui/lay/modules/util.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/common/plugins/layui/lay/modules/util.js, line 1: SyntaxError: expected expression, got '<'
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://account.court.gov.cn"
+JavaScript error: https://wenshu.court.gov.cn/website/common/plugins/layui/lay/modules/layer.js, line 1: SyntaxError: expected expression, got '<'
+1642692091519	Marionette	INFO	Stopped listening on port 54722
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1642730574927	geckodriver	INFO	Listening on 127.0.0.1:63562
+1642730577981	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\kevin\\AppData\\Local\\Temp\\rust_mozprofileQjdrTv"
+1642730578715	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\kevin\\AppData\\Local\\Temp\\rust_mozprofileQjdrTv\\search.json.mozlz4", (void 0)))
+1642730581280	Marionette	INFO	Listening on port 63573
+1642730581673	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/js/placeholder.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/js/common.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/181029CR4M5A62CH/index.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript warning: https://wenshu.court.gov.cn/ line 26 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://account.court.gov.cn"
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/js/common.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/181029CR4M5A62CH/index.js, line 554: ReferenceError: getNickName is not defined
+JavaScript error: https://wenshu.court.gov.cn/common/static/scripts/lawyeeui/website.js?v=1565674602637, line 1: SyntaxError: expected expression, got '<'
+1642730672940	Marionette	INFO	Stopped listening on port 63573
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1642730964856	geckodriver	INFO	Listening on 127.0.0.1:64306
+1642730967897	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\kevin\\AppData\\Local\\Temp\\rust_mozprofilez64FAE"
+1642730968625	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\kevin\\AppData\\Local\\Temp\\rust_mozprofilez64FAE\\search.json.mozlz4", (void 0)))
+1642730971414	Marionette	INFO	Listening on port 64316
+1642730971576	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/js/placeholder.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/js/common.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/181029CR4M5A62CH/index.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript warning: https://wenshu.court.gov.cn/ line 26 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://account.court.gov.cn"
+JavaScript error: https://wenshu.court.gov.cn/website/common/plugins/layui/lay/modules/laydate.js, line 1: SyntaxError: expected expression, got '<'
+1642731067439	Marionette	INFO	Stopped listening on port 64316
+[Parent 4840, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+1642731169414	geckodriver	INFO	Listening on 127.0.0.1:64963
+1642731172436	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\kevin\\AppData\\Local\\Temp\\rust_mozprofileLp1y4F"
+1642731173146	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\kevin\\AppData\\Local\\Temp\\rust_mozprofileLp1y4F\\search.json.mozlz4", (void 0)))
+1642731175892	Marionette	INFO	Listening on port 64974
+1642731176099	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/js/wenshulist1.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/js/common.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/wenshu/181029CR4M5A62CH/index.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript warning: https://wenshu.court.gov.cn/ line 26 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: https://wenshu.court.gov.cn/website/common/plugins/layui/lay/modules/laydate.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/common/plugins/layui/lay/modules/laydate.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/common/plugins/layui/lay/modules/layer.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/common/plugins/layui/lay/modules/laydate.js, line 1: SyntaxError: expected expression, got '<'
+JavaScript error: https://wenshu.court.gov.cn/website/common/plugins/layui/lay/modules/laydate.js, line 1: SyntaxError: expected expression, got '<'
+1642731339028	Marionette	INFO	Stopped listening on port 64974
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+JavaScript error: chrome://remote/content/marionette/cert.js, line 55: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1642731351824	geckodriver	INFO	Listening on 127.0.0.1:59404
+1642731354879	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\kevin\\AppData\\Local\\Temp\\rust_mozprofile0UpB7e"
+1642731355586	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\kevin\\AppData\\Local\\Temp\\rust_mozprofile0UpB7e\\search.json.mozlz4", (void 0)))
+1642731358094	Marionette	INFO	Listening on port 59416
+1642731358534	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://wenshu.court.gov.cn/ line 26 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1642731386800	Marionette	INFO	Stopped listening on port 59416
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+JavaScript error: chrome://remote/content/marionette/cert.js, line 55: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]

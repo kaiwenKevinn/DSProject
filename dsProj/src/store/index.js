@@ -6,7 +6,7 @@ import {default as axios} from "axios";
 Vue.use(Vuex)
 const url="http://localhost:9090"
 const state={
-
+  crawlingFinished:false,
   checked:{
 
   },
@@ -159,9 +159,9 @@ const actions = {
               })
               .then(function (response) {
                 // var analysisStatus = true
+                  context.state.crawlingFinished=true
                   if(response.status===200){
                     alert("爬取成功")
-
                   }
               })
               .catch(function (error) {

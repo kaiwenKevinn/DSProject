@@ -1,26 +1,64 @@
+import os
+import sys
+
+
+def default_seg_strategy(sentence):
+    flags = ['现在押', '现已刑满释放']
+    try:
+        index = sentence.rindex(flags[0])
+    except ValueError:
+        try:
+            index = sentence.rindex(flags[1])
+        except ValueError:
+            raise ValueError
+    return index
+
+
+def alternative_seg_strategy(sentence):
+    flags = ['现羁押于', '待扩展']
+    try:
+        index = sentence.rindex(flags[0])
+    except ValueError:
+        try:
+            index = sentence.rindex(flags[1])
+        except ValueError:
+            raise ValueError
+    return index
 
 
 class Parser:
-    def __init__(self, path):
-        self.path = path
-        self.raw_content = ""
-        self.basic_info = []
-        self.crime_info = []
-        self.rest = []
+    def __init__(self, filename='text.txt'):
+        self.filename = filename
+        self.first_seg = ''
+        self.second_seg = ''
 
-    def parse_content(self):
-        self.raw_content = open(self.path, 'r', encoding='utf-8').read()
-
-        with open(self.path, encoding='utf-8') as file:
-            sentences = file.read()[13:]
-        first_flag = '现在押'
-        first_flag_alternative = '现已刑满释放'
-        second_flag = '经复核确认'
+    def extract_beginning_part(self, seg_strategy=default_seg_strategy):
+        with open(self.filename, encoding='utf-8') as f:
+            sentence = f.read()
         try:
-            first_seg_end = sentences.index(first_flag) + len(first_flag)
+            index = seg_strategy(sentence)
         except ValueError:
-            first_seg_end = sentences.index(first_flag_alternative) + len(first_flag_alternative)
-        second_seg_end = sentences.index(second_flag)
-        self.basic_info.append(sentences[0:first_seg_end])
-        self.crime_info.append(sentences[first_seg_end:second_seg_end])
-        self.rest.append(sentences[second_seg_end:])
+            print('bad input:'+self.filename)
+            sys.exit()
+        self.first_seg = sentence[:index]
+        self.second_seg = sentence[index:]
+        return sentence[:index]
+
+    def extract_rest(self):
+        assert self.first_seg != ''
+        return self.second_seg
+
+
+def main():
+    with open('test.txt', 'w', encoding='utf-8') as test:
+        counter = 0
+        for file in os.listdir('data'):
+            with open('data/'+file, encoding='utf-8') as f:
+                parser = Parser('data/'+file)
+                test.write('file '+str(counter)+':\n')
+                test.write(parser.extract_beginning_part()+'\n')
+                counter += 1
+
+
+if __name__ == '__main__':
+    main()

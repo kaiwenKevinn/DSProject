@@ -1,7 +1,7 @@
 import json
 import os.path
-from datetime import time
-
+import time
+# from Crawler import os
 from flask import Flask, request
 from flask_cors import CORS
 from NLPHelper import NLPHelper
@@ -132,3 +132,12 @@ def diaoYong(fileName):
     }
 
     return MyDict
+
+@app.route("/1")
+def experiment():
+
+    print("helloworld")
+    return "200"
+
+if __name__ == '__main__':
+    app.run(host="127.0.0.1",port="9090")
