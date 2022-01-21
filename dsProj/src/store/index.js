@@ -87,9 +87,9 @@ const actions = {
   /*
   * 得到上传文件的分词结果
   * */
-  getResultFromUpload(context){
+  async getResultFromUpload(context){
     var obj
-    axios.post(url+'/analyze/upload', {
+    await axios.post(url+'/analyze/upload', {
               })
               .then(function (response) {
                 // var analysisStatus = true
@@ -118,6 +118,7 @@ const actions = {
                 // 总是会执行
                 context.commit('RENDER',obj)
               });
+    return obj.textFromUpload
   },
   /*
   * 下载标注

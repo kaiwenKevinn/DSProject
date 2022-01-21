@@ -79,10 +79,9 @@ export default {
 
     },
 
-    analyze(){
+    async analyze(){
       this.uploadStatus=true
-      this.$store.dispatch("getResultFromUpload")
-      this.Case=this.textToFillTheCase
+      this.Case = await this.$store.dispatch("getResultFromUpload")
 
       setTimeout(()=>{
                       this.uploadStatus=false
@@ -95,7 +94,7 @@ export default {
 
 <style scoped>
 .CaseText{
-    width: 800px;
+    width: 700px;
     margin-left: 250px;
     margin-top: 10px;
     float: left;
@@ -103,13 +102,13 @@ export default {
 .Upload{
   float: right;
   margin-top: 10px;
-  margin-right: 90px;
+  margin-right: 100px;
 }
 .emitButton{
 
    margin-top: 10px;
    float: right;
-    margin-right:500px ;
+    margin-right:570px ;
    display: inline-block;
 }
  .analyze{

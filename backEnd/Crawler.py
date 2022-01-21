@@ -2,10 +2,8 @@ import time
 from random import random
 import zipfile
 import os
-# from pythoncom import os
 import pythoncom
 import win32com.client
-# import pythoncom
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
