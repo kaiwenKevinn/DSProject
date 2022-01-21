@@ -1,5 +1,3 @@
-import sys
-
 from ltp import LTP
 import jieba.analyse
 
@@ -50,29 +48,29 @@ class Extracter:
         birth_place_flags = ['出生于', '出生地', '户籍地', '户籍所在地', '住']
         stop_sign = ['，', '。']
         birth_place_flag = ''
-        for i in range(3):
+        for i in range(5):
             if birth_place_flags[i] in self.seg[0]:
                 birth_place_flag = birth_place_flags[i]
                 break
+        has_flag = birth_place_flag != ''
 
-        assert birth_place_flag != ''
-        has_flag = False
         for i in range(len(self.seg[0])):
-            if self.pos[0][i] == 'nh' and self.seg[0][i] not in self.names:
+            if self.pos[0][i] == 'nh' and self.seg[0][i] not in self.names and len(self.seg[0][i]) < 4:
                 self.names.append(self.seg[0][i])
             if self.seg[0][i] == '男' or self.seg[0][i] == '女':
                 self.gender.append(self.seg[0][i])
             if self.seg[0][i] in self.eth_dict and self.seg[0][i] not in self.ethnicity:
                 self.ethnicity.append(self.seg[0][i])
-            if birth_place_flag == self.seg[0][i]:
+            if has_flag and birth_place_flag == self.seg[0][i]:
                 index = i + 1
-                has_flag = True
                 birth_place = ''
                 while not contain_stop_signs(stop_sign, self.seg[0][index]):
                     birth_place += self.seg[0][index]
                     index += 1
+                if birth_place == '':
+                    continue
                 self.birthplace.append(birth_place)
-            if not has_flag and self.pos[0][i] == 'ns' and self.seg[0][i] not in self.birthplace and not self.seg[0][i].endswith('法院'):
+            elif not has_flag and self.pos[0][i] == 'ns' and self.seg[0][i] not in self.birthplace and not self.seg[0][i].endswith('院'):
                 self.birthplace.append(self.seg[0][i])
         self.ltp.add_words(self.names)
         self.gender = list(set(self.gender))
@@ -94,7 +92,7 @@ class Extracter:
         for i in range(len(self.seg[0])):
             if self.seg[0][i] not in self.names and self.pos[0][i] == 'nh' and not contain_stop_signs(['，', '。', '\n', '（', '）'], self.seg[0][i]) and len(self.seg[0][i]) < 4:
                 self.names.append(self.seg[0][i])
-            elif self.seg[0][i].endswith('法院') and self.seg[0][i] not in self.courts and not contain_stop_signs(['，', '。', '\n', '（', '）'], self.seg[0][i]):
+            elif self.seg[0][i].endswith('法院') and self.seg[0][i] not in self.courts and not contain_stop_signs(['，', '。', '\n', '（', '）'], self.seg[0][i]) and len(self.seg[0][i]) > 6:
                 self.courts.append(self.seg[0][i])
 
     """for test usage"""

@@ -1,29 +1,15 @@
 import os
-import sys
 
 
-def default_seg_strategy(sentence):
-    flags = ['现在押', '现已刑满释放']
-    try:
-        index = sentence.rindex(flags[0])
-    except ValueError:
+def seg_strategy(sentence):
+    flags = ['现在押', '现已刑满释放', '取保候审', '现羁押于', '现押于', '被逮捕', '被刑事拘留', '服刑']
+    for flag in flags:
         try:
-            index = sentence.rindex(flags[1])
+            index = sentence.rindex(flag)
+            return index
         except ValueError:
-            raise ValueError
-    return index
-
-
-def alternative_seg_strategy(sentence):
-    flags = ['现羁押于', '待扩展']
-    try:
-        index = sentence.rindex(flags[0])
-    except ValueError:
-        try:
-            index = sentence.rindex(flags[1])
-        except ValueError:
-            raise ValueError
-    return index
+            continue
+    raise ValueError
 
 
 class Parser:
@@ -32,14 +18,16 @@ class Parser:
         self.first_seg = ''
         self.second_seg = ''
 
-    def extract_beginning_part(self, seg_strategy=default_seg_strategy):
+    def extract_beginning_part(self):
         with open(self.filename, encoding='utf-8') as f:
-            sentence = f.read()
+            sentence = f.read().strip()
         try:
             index = seg_strategy(sentence)
         except ValueError:
             print('bad input:'+self.filename)
-            sys.exit()
+            self.first_seg = sentence
+            self.second_seg = sentence
+            return sentence
         self.first_seg = sentence[:index]
         self.second_seg = sentence[index:]
         return sentence[:index]

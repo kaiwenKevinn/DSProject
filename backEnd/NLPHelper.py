@@ -39,7 +39,8 @@ def main():
     #     nlp.process()
     #     nlp.print_out()
     #     index += 1
-    nlp = NLPHelper('helper_debug/sample1.txt')
+    # nlp = NLPHelper('helper_debug/sample1.txt')
+    nlp = NLPHelper()
     nlp.process()
     nlp.print_out()
 
