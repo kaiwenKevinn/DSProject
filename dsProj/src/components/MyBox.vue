@@ -2,12 +2,12 @@
   <div>
 
      <div class="Item">
-        <MyItem :status="checkedClear" :items="property.name" :eachtitle="'姓名:'"/>
-        <MyItem :status="checkedClear" :items="property.gender" :eachtitle="'性别:'"/>
-        <MyItem :status="checkedClear" :items="property.ethnicity" :eachtitle="'民族:'"/>
-        <MyItem :status="checkedClear" :items="property.birthPlace" :eachtitle="'出生地:'"/>
-        <MyItem :status="checkedClear" :items="property.causes" :eachtitle="'案由:'"/>
-        <MyItem :status="checkedClear" :items="property.courts" :eachtitle="'相关法院:'"/>
+        <MyItem  :items="property.name" :eachtitle="'姓名:'"/>
+        <MyItem  :items="property.gender" :eachtitle="'性别:'"/>
+        <MyItem  :items="property.ethnicity" :eachtitle="'民族:'"/>
+        <MyItem  :items="property.birthPlace" :eachtitle="'出生地:'"/>
+        <MyItem  :items="property.causes" :eachtitle="'案由:'"/>
+        <MyItem :items="property.courts" :eachtitle="'相关法院:'"/>
      </div>
 
       <div class="Down">
@@ -55,8 +55,13 @@ export default {
       this.checkedClear=true
 
        setTimeout(()=>{
-                      this.checkedClear=false
-                      // console.log(that.analysisStatus)
+                    // this.checkedClear=false
+                      this.$notify({
+                    title: '成功',
+                    message: '案例与标注已下载成功，请前往FILES目录查看',
+                    type: 'success',
+                     duration:5000
+                    });
                     },200)
 
     },

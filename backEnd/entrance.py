@@ -1,19 +1,39 @@
 import json
 import os.path
-
-from flask import Flask, request, session, jsonify
+import time
+# from Crawler import os
+from flask import Flask, request
 from flask_cors import CORS
 from NLPHelper import NLPHelper
-import time
-app = Flask(__name__)
+from Crawler import Crawler
+# import time
 
-app.config["SECRET_KEY"] = "renyizifuchuan"
+app = Flask(__name__)
 
 CORS(app, supports_credentials=True)
 
 # @app.before_first_request
 # def init():
 location = [""]
+location = [""]
+Information = [""]
+
+
+# todo 调用爬虫接口
+@app.route("/crawl/1", methods=["POST", "GET"])
+def cry():
+    username = '18695633836'
+    password = '171437slF'
+
+    beginTime = request.args.get("beginTime")
+    endTime=request.args.get("endTime")
+    num=request.args.get("num")
+    num=int(num)
+    # print(num)
+    crawl = Crawler(username, password)
+    crawl.crawl(beginTime,endTime,num)
+    return "200"
+
 
 @app.route("/download/upload", methods=['POST', 'GET'])
 def save():
@@ -30,6 +50,9 @@ def save():
     # print("上传文件时",location)
     # session["dizhi"]=downloadpath
     f.close()
+    with open(downloadpath, 'r', encoding='utf-8') as file:
+        InputFromtxt = file.read()
+        Information[0] = InputFromtxt
 
     return "200"
 
@@ -74,7 +97,7 @@ def exp():
             f.write(dealing[1][i])
 
     f.close()
-    print("马上diaoYong")
+
     return diaoYong(downloadpath)
 
 
@@ -82,7 +105,11 @@ def exp():
 def analyze():
     global location
     # print("要调用了",location[0])
-    return diaoYong(location[0])
+    returnDict = diaoYong(location[0])
+    returnDict["text"] = Information[0]
+
+    return returnDict
+
 
 
 def diaoYong(fileName):
@@ -107,3 +134,12 @@ def diaoYong(fileName):
     }
 
     return MyDict
+
+@app.route("/1")
+def experiment():
+
+    print("helloworld")
+    return "200"
+
+if __name__ == '__main__':
+    app.run(host="127.0.0.1",port="9090")

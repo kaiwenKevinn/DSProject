@@ -2,8 +2,10 @@ import time
 from random import random
 import zipfile
 import os
+# from pythoncom import os
+import pythoncom
 import win32com.client
-
+# import pythoncom
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
@@ -188,9 +190,11 @@ class Crawler:
                     self.encoding_gbk_to_utf8(txt_name_absolute_path)
             time.sleep(0.1)
             z.close()
+            time.sleep(0.1)
             os.remove(self.download_path + '/' + zip_file)
 
     def doc_to_txt(self, word_path, save_path):
+        pythoncom.CoInitialize()
         word = win32com.client.Dispatch('kwps.Application')  # 调用word应用
         word.visible = 0  # 后台运行
         word.DisplayAlerts = 0  # 不显示， 不警告
@@ -229,7 +233,8 @@ class Crawler:
 
 def main():
     crawl = Crawler()
-    crawl.crawl('2010-1-20', '2018-1-20', 100)
+
+    crawl.crawl('2010-1-20', '2018-1-20', 10)
 
 
 if __name__ == '__main__':

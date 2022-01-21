@@ -22,6 +22,10 @@
       <el-button icon="el-icon-search" type="primary" circle @click="Crawling"></el-button>
     </el-row>
    </div>
+    <!-- 输入爬取参数   -->
+    <div class="getNums">
+      <el-input v-model="NumsToCrawl"  placeholder="请输入想要获取的份数"></el-input>
+    </div>
 
       <!--    清除浮动-->
     <div style="clear: both">
@@ -63,26 +67,68 @@ export default {
             }
           }]
       },
+      NumsToCrawl:"",
       value2:''
     }
     },
   methods:{
     Crawling(){
-      console.log(this.value2)
-      if(true) {
-        this.$notify({
-          title: '成功',
-          message: '正在爬取',
-          type: 'success'
-        });
-        this.value2=''
+      this.$store.state.crawlingFinished=false
+      var beginningTime=this.value2[0]
+      var endTime=this.value2[1]
+      var StringBeginningTime=(beginningTime.getFullYear())+"-"+(beginningTime.getMonth()+1)+"-"+(beginningTime.getDate())
+
+      var StringendTime=(endTime.getFullYear())+"-"+(endTime.getMonth()+1)+"-"+(endTime.getDate())
+      var num=this.NumsToCrawl
+
+      var params={
+        "StringBeginningTime":StringBeginningTime,
+        "StringendTime": StringendTime,
+        "num":num ,
       }
-      if(false){
-         this.$notify.error({
-          title: '成功',
-          message: '这是一条成功的提示消息',
+        const loading = this.$loading({
+                  lock: true,
+                  text: 'Loading',
+                  spinner: 'el-icon-loading',
+                  background: 'rgba(0, 0, 0, 0.7)'
         });
-      }
+      this.$store.dispatch('crawl',params)
+
+       setTimeout(()=>{
+                 loading.close();
+                   this.$notify({
+                    title: '成功',
+                    message: '数据已下载成功，请前往file_unzip目录查看',
+                    type: 'success',
+                     duration:10000
+                });
+       },150000)
+
+
+
+
+
+
+
+      // if(true) {
+      //   this.$notify({
+      //     title: '成功',
+      //     message: '正在爬取',
+      //     type: 'success'
+      //   });
+      //   this.value2=''
+      // }
+      // if(false){
+      //    this.$notify.error({
+      //     title: '成功',
+      //     message: '这是一条成功的提示消息',
+      //   });
+      // }
+    }
+  },
+  computed:{
+    crawlStatue(){
+      return this.$store.state.crawlingFinished
     }
   }
 }
@@ -93,9 +139,13 @@ export default {
   float: left;
   margin-left: 250px;
 }
+.getNums{
+  float: right;
+  margin-right: 40px;
+}
 .MyButton{
   float: right;
-  margin-right: 580px ;
+  margin-right: 310px ;
 }
 .whole{
   background-color: #eee8d8;
