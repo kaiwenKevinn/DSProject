@@ -6,7 +6,7 @@
   :autosize="{ minRows:8, maxRows: 100}"
    placeholder="请输入或点击案钮上传判决文书"
    size="medium"
-  v-model="Case">
+   v-model="Case">
 </el-input>
 </div>
 
@@ -55,6 +55,11 @@ export default {
       analysisStatus:false,
     }
   },
+  computed:{
+    textToFillTheCase(){
+      return this.$store.state.result.textFromUpload
+    }
+  },
   methods:{
     exceed(){
       console.log("超出数量限制")
@@ -62,6 +67,7 @@ export default {
           confirmButtonText: '确定',
         });
     },
+    // todo "sendText"
     load(){
       this.$store.commit("sendText",this.Case)
       this.$store.dispatch('getDivision')
@@ -72,10 +78,12 @@ export default {
                     },3000)
 
     },
+
     analyze(){
-      var that=this
       this.uploadStatus=true
       this.$store.dispatch("getResultFromUpload")
+      this.Case=this.textToFillTheCase
+
       setTimeout(()=>{
                       this.uploadStatus=false
                       // console.log(that.analysisStatus)

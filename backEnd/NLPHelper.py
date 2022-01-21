@@ -11,18 +11,18 @@ class NLPHelper:
         self.info = {}
 
     def process(self):
-        self.parser.parse_content()
-        self.extracter = Extracter()
-        self.extracter.extract_criminal_basic_info(self.parser.basic_info)
-        self.extracter.extract_principal_crime_info(self.parser.crime_info)
-        self.extracter.scan_rest_sentences(self.parser.rest)
-        self.extracter.extract_by_tfidf(self.parser.raw_content)
-
+        beginning_sentences = self.parser.extract_beginning_part()
+        rest_sentences = self.parser.extract_rest()
+        with open(self.parser.filename, encoding='utf-8') as file:
+            sentences = file.read()
+        self.extracter.extract_criminal_basic_info([beginning_sentences])
+        self.extracter.extract_principal_crime_info(sentences)
+        self.extracter.scan_rest([rest_sentences])
         self.info['name'] = self.extracter.names
-        self.info['ethnicity'] = self.extracter.ethnicity
+        self.info['ethnicity'] = list(set(self.extracter.ethnicity))
         self.info['birthplace'] = self.extracter.birthplace
         self.info['gender'] = self.extracter.gender
-        self.info['courts'] = self.extracter.courts_concerned
+        self.info['courts'] = self.extracter.courts
         self.info['causes'] = self.extracter.causes
 
     """for test usage"""
